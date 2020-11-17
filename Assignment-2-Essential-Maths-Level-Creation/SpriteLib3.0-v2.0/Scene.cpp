@@ -118,9 +118,9 @@ void Scene::CreateCameraEntity(bool mainCamera, float windowWidth, float windowH
 void Scene::CreateEntity(std::string fileName, int width, int height, float transparency, vec3 position)
 {
 	//Creates entity
+	
 	auto entity = ECS::CreateEntity();
-
-	//Add components
+	MainEntities::SetFocus(entity);
 	ECS::AttachComponent<Sprite>(entity);
 	ECS::AttachComponent<Transform>(entity);
 
@@ -160,7 +160,7 @@ void Scene::CreateMainEntity(b2World* m_physicsWorld,std::string fileName,int wi
 	tempPhsBody.SetRotationAngleDeg(0.f);
 	tempPhsBody.SetFixedRotation(true);
 	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
-	tempPhsBody.SetGravityScale(1.f);
+	tempPhsBody.SetGravityScale(0.f);
 }
 void Scene::CreateStaticEntity(b2World* m_physicsWorld, std::string fileName,int width,int height,vec3 position,float shrinkX,
 								float shrinkY,float tempDefPositionX, float tempDefPositionY,float rotation) 
@@ -251,7 +251,7 @@ void Scene::CreateEnemy(int entity,b2World* m_physicsWorld,std::string fileName,
 }
 void Scene::CreateTrigger(b2World* m_physicsWorld, std::string fileName,int target,float shrinkX,float shrinkY,vec3 position,float tempDefPositionX, float tempDefPositionY) {
 	//Setup trigger
-	{
+	
 		//Creates entity
 		auto entity = ECS::CreateEntity();
 
@@ -277,10 +277,9 @@ void Scene::CreateTrigger(b2World* m_physicsWorld, std::string fileName,int targ
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | OBJECTS);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
-	}
+	
 
-	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
-	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+
 }
 
 entt::registry* Scene::GetScene() const
