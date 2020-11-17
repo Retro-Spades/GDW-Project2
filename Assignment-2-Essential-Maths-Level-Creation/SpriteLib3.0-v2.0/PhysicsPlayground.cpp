@@ -35,23 +35,24 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	
 	//Main entity
 	{
-		Scene::CreateMainEntity(m_physicsWorld, "Ninja.png", 50, 40, 1.f, vec3(0.f, 30.f, 2.f),10.f);
+		Scene::CreateMainEntity(m_physicsWorld, "Ninja.png", 50, 40, 1.f, vec3(0.f, -40.f, 2.f),10.f);
 	}
 
 	//Setup static Top Platform
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 150, 10, vec3(30.f, -20.f, 2.f), 0.f, 0.f,30.f,-10.f,0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f,0.f,-10.f,0.f);
 	}
 
-	//Setup static RAMP
+	//Setup static Top Platform
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 80, 10, vec3(30.f, -20.f, 2.f), 0.f, 0.f, 137.f, -29.3f, -30.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, -10.f, 0.f);
 	}
 
-	//Setup static Platform
+	//Setup static Top Platform
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 150, 10, vec3(30.f, -20.f, 2.f), 0.f, 0.f, 240.f, -50.f,0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -37.f, -10.f, 0.f);
 	}
+
 	//Setup static Enemy
 	{
 		{
@@ -70,16 +71,15 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		}
 	}
 
-	//Fireball
-	{
-		Scene::CreateMoveableEntity(m_physicsWorld, "Fireball.png", 20, 20, 1.f, vec3(45.f, -8.f, 3.f), 0.f, 0.f, 45.f, -8.f);
-	}
 
 	//Setup trigger
 	{
 		Scene::CreateTrigger(m_physicsWorld, "Enemy.png", puzzleWall1, 0.f, 0.f, vec3(30.f, -20.f, 80.f), 294.f, -30.f);
 		Scene::CreateTrigger(m_physicsWorld, "Enemy.png", puzzleWall2, 0.f, 0.f, vec3(30.f, -20.f, 80.f), 294.f, -30.f);
 	}
+
+	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
+	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
 
 void PhysicsPlayground::Update()
