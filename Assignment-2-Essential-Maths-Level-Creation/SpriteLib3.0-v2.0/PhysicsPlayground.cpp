@@ -53,6 +53,15 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -37.f, -10.f, 0.f);
 	}
 
+	//Setup static Top Platform
+	{
+		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 99, 300, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -105.f, -10.f, 0.f);
+	}
+	//Setup static Top Platform
+	{
+		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 99, 300, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 105.f, -10.f, 0.f);
+	}
+
 	//Setup static Enemy
 	{
 		{
