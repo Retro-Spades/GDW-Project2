@@ -39,10 +39,6 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 	//Idle 
 	m_animController->AddAnimation(animations["SurferSpriteAnim"].get<Animation>());
 
-
-
-	//Attack Animations\\
-
 	//AttackLeft
 	m_animController->AddAnimation(animations["JumpSpriteAnim"].get<Animation>());
 	//AttackRight

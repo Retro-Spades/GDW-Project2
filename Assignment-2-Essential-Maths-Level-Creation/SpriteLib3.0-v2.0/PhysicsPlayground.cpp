@@ -35,7 +35,38 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	
 	//Main entity
 	{
-		Scene::CreateMainEntity(m_physicsWorld, "SurferCharacter.png", 50, 20, 1.f, vec3(0.f, -40.f, 2.f),10.f);
+
+		auto entity = ECS::CreateEntity();
+		ECS::SetIsMainPlayer(entity, true);
+
+		//Add components
+		ECS::AttachComponent<Player>(entity);
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<AnimationController>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+
+		std::string fileName = "SurferCharacter.png";
+		std::string animation = "SurferSpriteAnim.json";
+		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animation, 30, 30, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
+			&ECS::GetComponent<Transform>(entity));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
+		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(0.f, -40.f);
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetHeight() - 10.f) / 2.f), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
+
+		tempPhsBody.SetRotationAngleDeg(0.f);
+		tempPhsBody.SetFixedRotation(true);
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+		tempPhsBody.SetGravityScale(0.f);
 	}
 
 	//Setup static Top Platform
@@ -132,20 +163,12 @@ void PhysicsPlayground::KeyboardHold()
 void PhysicsPlayground::KeyboardDown()
 {
 	auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
-	auto& canJump = ECS::GetComponent<CanJump>(MainEntities::MainPlayer());
 
 	if (Input::GetKeyDown(Key::T))
 	{
 		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
 	}
-	if (canJump.m_canJump)
-	{
-		if (Input::GetKeyDown(Key::Space))
-		{
-			player.GetBody()->ApplyLinearImpulseToCenter(b2Vec2(0.f, 160000.f), true);
-			canJump.m_canJump = false;
-		}
-	}
+
 }
 
 void PhysicsPlayground::KeyboardUp()
