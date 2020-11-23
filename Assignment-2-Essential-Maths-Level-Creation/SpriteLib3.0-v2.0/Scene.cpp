@@ -137,9 +137,10 @@ void Scene::CreateMainEntity(b2World* m_physicsWorld,std::string fileName,int wi
 	//Add components
 	ECS::AttachComponent<Sprite>(entity);
 	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<AnimationController>(entity);
 	ECS::AttachComponent<PhysicsBody>(entity);
 	ECS::AttachComponent<CanJump>(entity);
-
+	std::string animation = "SurferSpriteAnim.json";
 	//Sets up the components
 	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
 	ECS::GetComponent<Sprite>(entity).SetTransparency(transparency);

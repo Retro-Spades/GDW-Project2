@@ -36,23 +36,20 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 
 	//IDLE ANIMATIONS\\
 	
-	//Idle Left
-	m_animController->AddAnimation(animations["Surfer"].get<Animation>());
-	//Idle Right
-	m_animController->AddAnimation(animations["Surfer"].get<Animation>());
-
+	//Idle 
+	m_animController->AddAnimation(animations["SurferSpriteAnim"].get<Animation>());
 
 
 
 	//Attack Animations\\
 
 	//AttackLeft
-	m_animController->AddAnimation(animations["JumpSurfer"].get<Animation>());
+	m_animController->AddAnimation(animations["JumpSpriteAnim"].get<Animation>());
 	//AttackRight
 
 
 	//Set Default Animation
-	m_animController->SetActiveAnim(IDLELEFT);
+	m_animController->SetActiveAnim(IDLE);
 
 
 }
@@ -84,13 +81,13 @@ void Player::MovementUpdate()
 		if (Input::GetKey(Key::A))
 		{
 			vel = vel + vec3(-1.f, 0.f, 0.f);
-			m_facing = LEFT;
+			
 			m_moving = true;
 		}
 		if (Input::GetKey(Key::D))
 		{
 			vel = vel + vec3(1.f, 0.f, 0.f);
-			m_facing = RIGHT;
+			
 			m_moving = true;
 		}
 
@@ -104,13 +101,13 @@ void Player::MovementUpdate()
 		if (Input::GetKey(Key::A))
 		{
 			m_transform->SetPositionX(m_transform->GetPositionX() - (speed * Timer::deltaTime));
-			m_facing = LEFT;
+			
 			m_moving = true;
 		}
 		if (Input::GetKey(Key::D))
 		{
 			m_transform->SetPositionX(m_transform->GetPositionX() + (speed * Timer::deltaTime));
-			m_facing = RIGHT;
+			
 			m_moving = true;
 		}
 	}
@@ -136,11 +133,11 @@ void Player::AnimationUpdate()
 	if (m_moving)
 	{
 		//Puts it into the WALK category
-		activeAnimation = WALK;
+		activeAnimation = IDLE;
 	}
 	else if (m_attacking)
 	{
-		activeAnimation = ATTACK;
+		activeAnimation = JUMP;
 
 		//Check if the attack animation is done
 		if (m_animController->GetAnimation(m_animController->GetActiveAnim()).GetAnimationDone())
@@ -159,7 +156,7 @@ void Player::AnimationUpdate()
 		activeAnimation = IDLE;
 	}
 
-	SetActiveAnimation(activeAnimation + (int)m_facing);
+	SetActiveAnimation(activeAnimation);
 }
 
 void Player::SetActiveAnimation(int anim)

@@ -35,7 +35,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	
 	//Main entity
 	{
-		Scene::CreateMainEntity(m_physicsWorld, "Ninja.png", 50, 40, 1.f, vec3(0.f, -40.f, 2.f),10.f);
+		Scene::CreateMainEntity(m_physicsWorld, "SurferCharacter.png", 50, 20, 1.f, vec3(0.f, -40.f, 2.f),10.f);
 	}
 
 	//Setup static Top Platform
