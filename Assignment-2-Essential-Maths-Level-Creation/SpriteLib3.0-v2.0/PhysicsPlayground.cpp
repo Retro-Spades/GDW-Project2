@@ -61,7 +61,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetHeight() - 10.f) / 2.f), vec2(0.f, 0.f), false, PLAYER, ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
+		tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetHeight() - 10.f) / 2.f), vec2(0.f, 0.f), false, PLAYER, GROUND | ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
 
 		tempPhsBody.SetRotationAngleDeg(0.f);
 		tempPhsBody.SetFixedRotation(true);
@@ -88,7 +88,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	{
 		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 99, 300, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -105.f, -10.f, 0.f);
 	}
-	//Setup static Top Platform
+	//Setup static RIGHT WALL
 	{
 		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 99, 300, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 105.f, -10.f, 0.f);
 	}
@@ -114,8 +114,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 	//Setup trigger
 	{
-		Scene::CreateTrigger(m_physicsWorld, "Enemy.png", puzzleWall1, 0.f, 0.f, vec3(30.f, -20.f, 80.f), 294.f, -30.f);
-		Scene::CreateTrigger(m_physicsWorld, "Enemy.png", puzzleWall2, 0.f, 0.f, vec3(30.f, -20.f, 80.f), 294.f, -30.f);
+		Scene::CreateTrigger(m_physicsWorld, "Grass.png", puzzleWall1, 0.f, 0.f, vec3(30.f, -20.f, 80.f), 294.f, -30.f);
+	
 	}
 
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
