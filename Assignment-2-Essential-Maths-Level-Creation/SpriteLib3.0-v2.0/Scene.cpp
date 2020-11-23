@@ -190,6 +190,7 @@ void Scene::CreateStaticEntity(b2World* m_physicsWorld, std::string fileName,int
 	tempPhsBody = PhysicsBody(entity, tempBody, float(tempSpr.GetWidth() - shrinkX),
 		float(tempSpr.GetHeight() - shrinkY), vec2(0.f, 0.f), false, GROUND, PLAYER | ENEMY);
 	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	tempPhsBody.SetGravityScale(1.f);
 	if (rotation != 0.f)
 	{
 		tempPhsBody.SetRotationAngleDeg(rotation);
@@ -223,6 +224,7 @@ void Scene::CreateMoveableEntity(b2World* m_physicsWorld, std::string fileName, 
 
 	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 	tempPhsBody.SetFixedRotation(true);
+	tempPhsBody.SetGravityScale(1.f);
 }
 void Scene::CreateEnemy(int entity,b2World* m_physicsWorld,std::string fileName,int width,int height,vec3 position,float shrinkX,
 								float shrinkY,float tempDefPositionX, float tempDefPositionY) 
