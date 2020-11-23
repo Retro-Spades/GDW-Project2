@@ -71,17 +71,17 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 	//Setup static Top Platform
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f,0.f,-10.f,0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "Train.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f,0.f,-10.f,0.f);
 	}
 
 	//Setup static Top Platform
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, -10.f, 0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "Train.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, -10.f, 0.f);
 	}
 
 	//Setup static Top Platform
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -37.f, -10.f, 0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "Train.png", 35, 10, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -37.f, -10.f, 0.f);
 	}
 
 	//Setup static Top Platform
