@@ -110,15 +110,14 @@ void Player::MovementUpdate()
 
 	if (Input::GetKeyDown(Key::Space))
 	{
-		m_moving = false;
+		
 
 		if (m_hasPhysics)
 		{
 			m_physBody->SetVelocity(vec3());
 		}
 
-		m_attacking = true;
-		m_locked = true;
+		m_jumping = true;
 	}
 }
 
@@ -126,12 +125,8 @@ void Player::AnimationUpdate()
 {
 	int activeAnimation = 0;
 
-	if (m_moving)
-	{
-		//Puts it into the WALK category
-		activeAnimation = IDLE;
-	}
-	else if (m_attacking)
+
+	if (m_jumping)
 	{
 		activeAnimation = JUMP;
 
@@ -140,8 +135,8 @@ void Player::AnimationUpdate()
 		{
 			//Will auto set to idle
 			m_locked = false;
-			m_attacking = false;
-			//Resets the attack animation
+			m_jumping = false;
+			//Resets the animation
 			m_animController->GetAnimation(m_animController->GetActiveAnim()).Reset();
 
 			activeAnimation = IDLE;

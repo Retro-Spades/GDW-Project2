@@ -20,7 +20,7 @@ enum AnimTypes
 #endif
 
 	IDLE = 0,
-	JUMP = 1
+	JUMP = 1,
 
 };
 
@@ -50,7 +50,7 @@ private:
 	//Basically, any animation OTHER than moving will not have a cancel, and we'll be checking whether or not that animation is done
 	bool m_moving = false;
 	//Are you currently attacking?????
-	bool m_attacking = false;
+	bool m_jumping = false;
 	//Have we locked the player from moving during this animation?
 	bool m_locked = false;
 
