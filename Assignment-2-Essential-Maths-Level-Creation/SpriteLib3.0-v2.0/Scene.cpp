@@ -196,8 +196,42 @@ void Scene::CreateStaticEntity(b2World* m_physicsWorld, std::string fileName,int
 		tempPhsBody.SetRotationAngleDeg(rotation);
 	}
 }
+
+void Scene::PlayerPlatform(b2World* m_physicsWorld, int width, int height, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY, float rotation)
+{
+	//Creates entity
+	auto entity = ECS::CreateEntity();
+
+	//Add components
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+
+	//Sets up components
+	ECS::GetComponent<Transform>(entity).SetPosition(position);
+
+	//auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_staticBody;
+	tempDef.position.Set(tempDefPositionX, tempDefPositionY);
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, float(shrinkX), float(shrinkY), vec2(0.f, 0.f), false, PLATFORM, PLAYER, 0.f, 5000.f);
+
+	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
+	if (rotation != 0.f)
+	{
+		tempPhsBody.SetRotationAngleDeg(rotation);
+	}
+	
+}
+
 void Scene::CreateMoveableEntity(b2World* m_physicsWorld, std::string fileName, int width, int height,float transparency, vec3 position, float shrinkX, 
-								float shrinkY, float tempDefPositionX, float tempDefPositionY) {
+										float shrinkY, float tempDefPositionX, float tempDefPositionY) {
 	auto entity = ECS::CreateEntity();
 	//Add components
 	ECS::AttachComponent<Sprite>(entity);
@@ -224,8 +258,39 @@ void Scene::CreateMoveableEntity(b2World* m_physicsWorld, std::string fileName, 
 
 	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
 	tempPhsBody.SetFixedRotation(true);
-	tempPhsBody.SetGravityScale(1.f);
+	tempPhsBody.SetGravityScale(0.2f);
 }
+
+void Scene::TrainEntity (b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX,
+	float shrinkY, float tempDefPositionX, float tempDefPositionY) {
+	auto entity = ECS::CreateEntity();
+	//Add components
+	ECS::AttachComponent<Sprite>(entity);
+	ECS::AttachComponent<Transform>(entity);
+	ECS::AttachComponent<PhysicsBody>(entity);
+
+	//Sets up the components
+	ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
+	ECS::GetComponent<Sprite>(entity).SetTransparency(transparency);
+	ECS::GetComponent<Transform>(entity).SetPosition(position);
+
+	auto& tempSpr = ECS::GetComponent<Sprite>(entity);
+	auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+	b2Body* tempBody;
+	b2BodyDef tempDef;
+	tempDef.type = b2_dynamicBody;
+	tempDef.position.Set(tempDefPositionX, tempDefPositionY);
+
+	tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+	tempPhsBody = PhysicsBody(entity, tempBody, width, height, vec2(0.f, 0.f), false, OBJECTS, GROUND | ENVIRONMENT | PLAYER | TRIGGER, 1.f, 1000.f);
+
+	tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
+	tempPhsBody.SetFixedRotation(true);
+	tempPhsBody.SetGravityScale(0.2f);
+}
+
 void Scene::CreateEnemy(int entity,b2World* m_physicsWorld,std::string fileName,int width,int height,vec3 position,float shrinkX,
 								float shrinkY,float tempDefPositionX, float tempDefPositionY) 
 {

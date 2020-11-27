@@ -26,7 +26,9 @@ enum EntityCategories
 	FRIENDLY	= 0x0005,
 	ENEMY		= 0x0006,
 	PICKUP		= 0x0007,
-	TRIGGER		= 0x0008
+	TRIGGER		= 0x0008,
+	TRAIN		= 0x0009,
+	PLATFORM	= 0x0010
 };
 
 

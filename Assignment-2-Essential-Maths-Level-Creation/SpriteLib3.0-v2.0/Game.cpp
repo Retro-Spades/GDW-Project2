@@ -28,7 +28,8 @@ Game::~Game()
 void Game::InitGame()
 {
 	//Initializes the backend with window width and height values
-	BackEnd::InitBackEnd(719.f, 436.f);
+	BackEnd::InitBackEnd(700.f, 900.f);
+	//BackEnd::InitBackEnd(719.f, 436.f); - This was the previous aspect ratio
 
 	//Grabs the initialized window
 	m_window = BackEnd::GetWindow();
