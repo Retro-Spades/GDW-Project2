@@ -220,7 +220,7 @@ void Scene::PlayerPlatform(b2World* m_physicsWorld, int width, int height, vec3 
 
 	tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-	tempPhsBody = PhysicsBody(entity, tempBody, float(shrinkX), float(shrinkY), vec2(0.f, 0.f), false, PLATFORM, PLAYER, 0.f, 5000.f);
+	tempPhsBody = PhysicsBody(entity, tempBody, float(shrinkX), float(shrinkY), vec2(0.f, 0.f), false, PLATFORM, PLAYER);
 
 	tempPhsBody.SetColor(vec4(0.f, 1.f, 0.f, 0.3f));
 	if (rotation != 0.f)
