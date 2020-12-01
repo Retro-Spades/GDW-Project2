@@ -26,11 +26,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 	//Setup MainCamera Entity
 	{
-		Scene::CreateCameraEntity(true, 5000.f, 5000.f, vec4(-75.f, 75.f, -75.f, 75.f), -100.f, 100.f);
+		Scene::CreateCameraEntity(true, 5000.f, 5000.f, -85.f, 85.f, -85.f, 85.f, -100.f, 100.f, aspectRatio, true, true);
 	}
 	//Setup new Entity
 	{
-		Scene::CreateEntity("HelloWorld.png", 100, 60, 0.5f, vec3(0.f, 0.f, 0.f));
+		Scene::CreateEntity("MainFloor.png", 110, 300, 1.f, vec3(0.f, 0.f, 0.f));
 	}
 	
 	//Main entity
@@ -108,13 +108,13 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	//}
 
 
-	//Setup static Top Platform
+	//Setup static LEFT WALL
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 99, 300, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -105.f, -10.f, 0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "LeftWall.png", 15, 200, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -60.f, -10.f, 0.f);
 	}
 	//Setup static RIGHT WALL
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "Grass.png", 99, 300, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 105.f, -10.f, 0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "RightWall.png", 15, 200, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 60.f, -10.f, 0.f);
 	}
 
 
@@ -171,7 +171,7 @@ void PhysicsPlayground::KeyboardDown()
 	{
 		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
 	}
-
+	
 }
 
 void PhysicsPlayground::KeyboardUp()

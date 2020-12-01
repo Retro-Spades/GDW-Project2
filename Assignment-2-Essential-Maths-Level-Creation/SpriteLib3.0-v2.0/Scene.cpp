@@ -90,28 +90,36 @@ void Scene::AdjustScrollOffset()
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetOffset(maxSizeY - playerHalfSize);
 }
 
-void Scene::CreateCameraEntity(bool mainCamera, float windowWidth, float windowHeight, vec4 temp, 
-									float zNear, float zFar)
-{
-	float aspectRatio = windowWidth / windowHeight;
-	//Setup main camera
+void Scene::CreateCameraEntity(bool mainCamera, float windowWidth, float windowHeight, float left, float right, float bottom, float top, float zNear, float zFar, float aspectRatio, bool vertScroll, bool horizScroll)
+{//Setup main camera
 	{
 		//Creates Camera Entity
 		auto entity = ECS::CreateEntity();
-		ECS::SetIsMainCamera(entity, mainCamera);
+		ECS::SetIsMainCamera(entity, false);
 
 		ECS::AttachComponent<Camera>(entity);
-		ECS::AttachComponent<HorizontalScroll>(entity);
-		ECS::AttachComponent<VerticalScroll>(entity);
+		if (horizScroll)
+		{
+			ECS::AttachComponent<HorizontalScroll>(entity);
+		}
+		if (vertScroll)
+		{
+			ECS::AttachComponent<VerticalScroll>(entity);
+		}
 
-		//vec4 temp = vec4(left, right, bottom, top);
+		vec4 temp = vec4(left, right, bottom, top);
 		ECS::GetComponent<Camera>(entity).SetOrthoSize(temp);
 		ECS::GetComponent<Camera>(entity).SetWindowSize(vec2(float(windowWidth), float(windowHeight)));
 		ECS::GetComponent<Camera>(entity).Orthographic(aspectRatio, temp.x, temp.y, temp.z, temp.w, zNear, zFar);
 
-		ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-		ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
-
+		if (horizScroll)
+		{
+			ECS::GetComponent<HorizontalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
+		}
+		if (vertScroll)
+		{
+			ECS::GetComponent<VerticalScroll>(entity).SetCam(&ECS::GetComponent<Camera>(entity));
+		}
 	}
 }
 

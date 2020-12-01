@@ -25,7 +25,7 @@ public:
 	virtual void Update();
 
 	void AdjustScrollOffset();
-	void CreateCameraEntity(bool mainCamera, float windowWidth, float windowHeight, vec4 temp, float zNear, float zFar);
+	void CreateCameraEntity(bool mainCamera, float windowWidth, float windowHeight, float left, float right, float bottom, float top, float zNear, float zFar, float aspectRatio, bool vertScroll = false, bool horizScroll = false);
 	void CreateEntity(std::string fileName, int width, int height, float transparency, vec3 position);
 	void CreateMainEntity(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position,float shrink);
 	void CreateStaticEntity(b2World* m_physicsWorld, std::string fileName, int width, int height, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY,float rotation);
