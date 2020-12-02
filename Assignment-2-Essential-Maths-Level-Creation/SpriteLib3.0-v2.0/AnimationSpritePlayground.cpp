@@ -51,6 +51,7 @@ void AnimationSpritePlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 0.f));
 	}
 
+	
 	//Setup Link
 	{
 		auto entity = ECS::CreateEntity();
