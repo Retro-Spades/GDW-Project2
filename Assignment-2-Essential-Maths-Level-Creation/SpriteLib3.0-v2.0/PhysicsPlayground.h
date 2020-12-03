@@ -12,6 +12,7 @@ public:
 
 	void Update() override;
 
+	void monkey();
 
 	//Input overrides
 	void KeyboardHold() override;

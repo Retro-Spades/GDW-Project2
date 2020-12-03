@@ -1,8 +1,11 @@
 #include "PhysicsPlayground.h"
 #include "Utilities.h"
-
+#include <iostream>
+#include <chrono>
+#include <thread>
 #include <random>
 
+using namespace std;
 PhysicsPlayground::PhysicsPlayground(std::string name)
 	: Scene(name)
 {
@@ -11,6 +14,10 @@ PhysicsPlayground::PhysicsPlayground(std::string name)
 	m_physicsWorld->SetGravity(m_gravity);
 
 	m_physicsWorld->SetContactListener(&listener);
+}
+
+void PhysicsPlayground::monkey() {
+	Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, 50.f);
 }
 
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
@@ -73,10 +80,17 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	{
 		Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -20.f, 2.f),  110.f, 10.f,  0.f, -50.f, 0.f);
 	}
+	float anthony = 50.f;
 
+	PhysicsPlayground::monkey();
 	//Starter Train
 	{
-		Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3 (0.f, 20.f, 2.f), 0.f, 0.f,0.f,50.f);
+		for (float i = 1; i < 10; i++)
+		{
+			//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
+			//this_thread::sleep_for(chrono::milliseconds(10000));
+			anthony = anthony + 250.f;
+		}
 	}
 
 	////Setup static Top Platform
@@ -143,13 +157,13 @@ void PhysicsPlayground::KeyboardHold()
 		speed *= 5.f;
 	}
 
-	if (Input::GetKeyDown(Key::A))
+	if (Input::GetKey(Key::A))
 	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
+		player.GetBody()->ApplyForceToCenter(b2Vec2(-140000.f, 0.f), true);
 	}
-	if (Input::GetKeyDown(Key::D))
+	if (Input::GetKey(Key::D))
 	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(1400000.f, 0.f), true);
+		player.GetBody()->ApplyForceToCenter(b2Vec2(140000.f, 0.f), true);
 	}
 
 	//Change physics body size for circle
