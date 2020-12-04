@@ -37,7 +37,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 	//Setup new Entity
 	{
-		Scene::CreateEntity("MainFloor.png", 110, 300, 1.f, vec3(0.f, 0.f, 0.f));
+		Scene::CreateEntity("StationBackground.jpg", 150, 170, 1.f, vec3(0.f, 0.f, 1.f));
 	}
 	
 	//Main entity
@@ -124,11 +124,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 	//Setup static LEFT WALL
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "LeftWall.png", 15, 200, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -60.f, -10.f, 0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "LeftWall.png", 15, 200, vec3(0.f, -20.f, 0.f), 0.f, 0.f, -60.f, -10.f, 0.f);
 	}
 	//Setup static RIGHT WALL
 	{
-		Scene::CreateStaticEntity(m_physicsWorld, "RightWall.png", 15, 200, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 60.f, -10.f, 0.f);
+		Scene::CreateStaticEntity(m_physicsWorld, "RightWall.png", 15, 200, vec3(0.f, -20.f, 0.f), 0.f, 0.f, 60.f, -10.f, 0.f);
 	}
 
 
