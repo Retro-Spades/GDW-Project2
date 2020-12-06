@@ -35,6 +35,8 @@ public:
 	void TrainEntity(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY);
 	void PlayerPlatform(b2World* m_physicsWorld, int width, int height, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY, float rotation);
 
+	int* randomNumX();
+	int randomNum();
 	//Gamepad Input
 	//Because these are virtual you can override them in your inherited classes.
 	//The same way you do for Update().
