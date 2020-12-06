@@ -12,7 +12,9 @@ public:
 
 	void Update() override;
 
-	void monkey();
+	void Combination1(int, float&);
+	void Combination2(int, float&);
+	void Combination3(int, float&);
 
 	//Input overrides
 	void KeyboardHold() override;

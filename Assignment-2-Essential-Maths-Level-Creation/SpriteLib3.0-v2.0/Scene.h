@@ -23,7 +23,8 @@ public:
 	virtual void InitScene(float windowWidth, float windowHeight);
 
 	virtual void Update();
-
+	int randomNum();
+	int * randomNumX();
 	void AdjustScrollOffset();
 	void CreateCameraEntity(bool mainCamera, float windowWidth, float windowHeight, float left, float right, float bottom, float top, float zNear, float zFar, float aspectRatio, bool vertScroll = false, bool horizScroll = false);
 	void CreateEntity(std::string fileName, int width, int height, float transparency, vec3 position);

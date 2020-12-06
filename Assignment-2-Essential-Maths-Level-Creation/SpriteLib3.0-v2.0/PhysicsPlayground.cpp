@@ -4,24 +4,87 @@
 #include <chrono>
 #include <thread>
 #include <random>
+#include <ctime>
+float posX;
+float posY = 50.f;
+float apple;
 
 using namespace std;
 PhysicsPlayground::PhysicsPlayground(std::string name)
 	: Scene(name)
 {
 	//No gravity this is a top down scene
-	m_gravity = b2Vec2(0.f, -150.f);
+	//m_gravity = b2Vec2(0.f, -150.f);
+	m_gravity = b2Vec2(0.f, -30.f);
 	m_physicsWorld->SetGravity(m_gravity);
 
 	m_physicsWorld->SetContactListener(&listener);
 }
 
-void PhysicsPlayground::monkey() {
-	Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, 50.f);
+void PhysicsPlayground::Combination1(int posX, float& PosY)
+{
+	float apple1;
+	if (posX == 1)
+	{
+		apple = 0.f;
+	}
+	else if (posX == 2)
+	{
+		apple = 30.f;
+	}
+	else if (posX == 3)
+	{
+		apple = -30.f;
+	}
+	apple1 = apple;
+	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	PosY = PosY + 100.f;
+}
+void PhysicsPlayground::Combination2(int posX, float& PosY)
+{
+	float apple1;
+	if (posX == 1)
+	{
+		apple = 0.f;
+	}
+	else if (posX == 2)
+	{
+		apple = 30.f;
+	}
+	else if (posX == 3)
+	{
+		apple = -30.f;
+	}
+	apple1 = apple;
+	Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	PosY = PosY + 100.f;
+}
+void PhysicsPlayground::Combination3(int posX, float& PosY)
+{
+	float apple1;
+	if (posX == 1)
+	{
+		apple = 0.f;
+	}
+	else if (posX == 2)
+	{
+		apple = 30.f;
+	}
+	else if (posX == 3)
+	{
+		apple = -30.f;
+	}
+	apple1 = apple;
+	Scene::TrainEntity(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	PosY = PosY + 57.f;
+	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	PosY = PosY + 150.f;
 }
 
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
+	int tempVar;
+
 	//Dynamically allocates the register
 	m_sceneReg = new entt::registry;
 
@@ -81,18 +144,49 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -20.f, 2.f),  110.f, 10.f,  0.f, -50.f, 0.f);
 	}
 	float anthony = 50.f;
-
-	PhysicsPlayground::monkey();
+	
 	//Starter Train
 	{
-		for (float i = 1; i < 10; i++)
+		int* p;
+		int num;
+		p = randomNumX();
+		num = randomNum();
+
+		for (int i = 0; i < 100; i=i)
 		{
+
+			tempVar = *(p + i);
+			i++;
+			std::cout << tempVar << endl;
+			Combination1(tempVar,posY);
+
+			tempVar = *(p + i);
+			i++;
+			std::cout << tempVar << endl;
+			Combination2(tempVar,posY);
+
+			tempVar = *(p + i);
+			i++;
+			std::cout << tempVar << endl;
+			Combination3(tempVar,posY);
+			
+			for (int i = 0; i < 3; i++)
+			{
+				cout << *(p + i) << endl;
+			}
+
+			std::cout << endl << "Next group" << endl << endl;
 			//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
-			//this_thread::sleep_for(chrono::milliseconds(10000));
-			anthony = anthony + 250.f;
 		}
 	}
-
+	//Right Player Boarder
+	{
+		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -20.f, 2.f), 10.f, 10.f, 44.f, -40.f, 0.f);
+	}
+	//Left Player Boarder
+	{
+		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -20.f, 2.f), 10.f, 10.f, -43.f, -40.f, 0.f);
+	}
 	////Setup static Top Platform
 	//{
 	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train2.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, 150.f);
@@ -141,7 +235,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 void PhysicsPlayground::Update()
 {
-	
+	//std::cout << randomNum();
 }
 
 
@@ -159,11 +253,11 @@ void PhysicsPlayground::KeyboardHold()
 
 	if (Input::GetKey(Key::A))
 	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(-140000.f, 0.f), true);
+		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
 	}
 	if (Input::GetKey(Key::D))
 	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(140000.f, 0.f), true);
+		player.GetBody()->ApplyForceToCenter(b2Vec2(1400000.f, 0.f), true);
 	}
 
 	//Change physics body size for circle

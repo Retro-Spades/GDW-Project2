@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Utilities.h"
-
+#include <ctime>
+#include <iostream>
 Scene::Scene(std::string name)
 {
 	m_physicsWorld = new b2World(m_gravity);
@@ -21,7 +22,25 @@ void Scene::Unload()
 		m_physicsWorld = nullptr;
 	}
 }
+int * Scene::randomNumX()
+{
+	static int number[100];
 
+	srand(time(NULL));
+	for (int i = 0; i < 100; i++)
+	{
+		number[i] = (rand() % 3) + 1;
+	}
+	return number;
+}
+
+int Scene::randomNum()
+{
+	int number;
+	srand(time(NULL));
+	number = (rand() % 97) + 1;
+	return number;
+}
 void Scene::InitScene(float windowWidth, float windowHeight)
 {
 	//Default scene class init just includes a camera so stuff doesn't immediately crash
