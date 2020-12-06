@@ -12,6 +12,10 @@ public:
 
 	void Update() override;
 
+<<<<<<< HEAD
+=======
+	void monkey();
+>>>>>>> main
 	void Combination1(int, float&);
 	void Combination2(int, float&);
 	void Combination3(int, float&);
