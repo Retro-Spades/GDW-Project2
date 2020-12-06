@@ -30,17 +30,6 @@ void PhysicsPlayground::Combination1(int posX, float& PosY)
 	}
 	else if (posX == 2)
 	{
-<<<<<<< HEAD
-		apple = 30.f;
-	}
-	else if (posX == 3)
-	{
-		apple = -30.f;
-	}
-	apple1 = apple;
-	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
-	PosY = PosY + 100.f;
-=======
 		apple = 33.f;
 	}
 	else if (posX == 3)
@@ -50,7 +39,6 @@ void PhysicsPlayground::Combination1(int posX, float& PosY)
 	apple1 = apple;
 	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 130.f;
->>>>>>> main
 }
 void PhysicsPlayground::Combination2(int posX, float& PosY)
 {
@@ -61,17 +49,6 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 	}
 	else if (posX == 2)
 	{
-<<<<<<< HEAD
-		apple = 30.f;
-	}
-	else if (posX == 3)
-	{
-		apple = -30.f;
-	}
-	apple1 = apple;
-	Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
-	PosY = PosY + 100.f;
-=======
 		apple = 33.f;
 	}
 	else if (posX == 3)
@@ -81,7 +58,6 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 	apple1 = apple;
 	Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 130.f;
->>>>>>> main
 }
 void PhysicsPlayground::Combination3(int posX, float& PosY)
 {
@@ -92,19 +68,11 @@ void PhysicsPlayground::Combination3(int posX, float& PosY)
 	}
 	else if (posX == 2)
 	{
-<<<<<<< HEAD
-		apple = 30.f;
-	}
-	else if (posX == 3)
-	{
-		apple = -30.f;
-=======
 		apple = 33.f;
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
->>>>>>> main
 	}
 	apple1 = apple;
 	Scene::TrainEntity(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
@@ -202,17 +170,12 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 			std::cout << tempVar << endl;
 			Combination3(tempVar,posY);
 			
-<<<<<<< HEAD
-			for (int i = 0; i < 3; i++)
-			{
-				cout << *(p + i) << endl;
-			}
-=======
+
 			/*for (int i = 0; i < 3; i++)
 			{
 				cout << *(p + i) << endl;
 			}*/
->>>>>>> main
+
 
 			std::cout << endl << "Next group" << endl << endl;
 			//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
