@@ -11,7 +11,6 @@ float apple;
 float boat;
 float grape, pear, peach;
 float tempscore;
-int displayscore;
 
 using namespace std;
 PhysicsPlayground::PhysicsPlayground(std::string name)
@@ -233,21 +232,21 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 			tempVar = *(p + i);
 			i++;
-			std::cout << tempVar << endl;
+			//std::cout << tempVar << endl;
 			Combination1(tempVar,posY);
 
 			tempVar = *(p + i);
 			i++;
-			std::cout << tempVar << endl;
+			//std::cout << tempVar << endl;
 			Combination2(tempVar,posY);
 
 			tempVar = *(p + i);
 			i++;
-			std::cout << tempVar << endl;
+			//std::cout << tempVar << endl;
 			Combination3(tempVar,posY);
 
 
-			std::cout << endl << "Next group" << endl << endl;
+			//std::cout << endl << "Next group" << endl << endl;
 		}
 	}
 	//Right Player Boarder
@@ -291,7 +290,6 @@ void PhysicsPlayground::Update()
 		multiplier = 1;
 		startimer = 0;
 	}
-	cout << heightVar;
 	if (boots == true)
 	{
 		bootTimer += 0.01;

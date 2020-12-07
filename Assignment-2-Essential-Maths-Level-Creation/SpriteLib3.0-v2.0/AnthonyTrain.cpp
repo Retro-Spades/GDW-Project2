@@ -7,7 +7,7 @@
 #include <windows.h>
 #include <cstdlib>
 #include "PhysicsPlayground.h"
-	int heightVar;
+	int heightVar, displayscore;
 using namespace std;
 using namespace std::chrono_literals;
 
@@ -47,7 +47,7 @@ void AnthonyTrain::OnEnter()
 
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 			system("cls");
-			string Menu[3] = { "Play Again" , "Exit", "score" };
+			string Menu[3] = { "Play Again" , "Exit", ""};
 			int pointer = 0;
 			bool bMainMenu = true;
 			while (bMainMenu)
@@ -56,6 +56,7 @@ void AnthonyTrain::OnEnter()
 
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 				cout << "YOU DIED \n";
+				cout << "Your Score was " << displayscore << "!\n";
 				for (int i = 0; i < 3; ++i)
 				{
 					if (i == pointer)
