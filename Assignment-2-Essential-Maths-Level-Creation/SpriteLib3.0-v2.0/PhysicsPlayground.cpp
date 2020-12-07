@@ -238,14 +238,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 void PhysicsPlayground::Update()
 {
 	//std::cout << randomNum();
-<<<<<<< HEAD
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	Scene::AdjustScrollOffset();
 	player.Update();
-=======
 	score += 0.01;
 	displayscore = score;
->>>>>>> 62f0b27833d1b1c0bac93e8ca9d7b72a333d8e99
 }
 
 
