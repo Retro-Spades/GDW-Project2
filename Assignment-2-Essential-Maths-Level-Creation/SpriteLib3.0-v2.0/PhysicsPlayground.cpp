@@ -154,7 +154,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		p = randomNumX();
 		num = randomNum();
 
-		for (int i = 0; i < 100; i=i)
+		for (int i = 0; i < 50; i=i)
 		{
 
 			tempVar = *(p + i);
