@@ -9,7 +9,7 @@ float posX;
 float posY = 100.f;
 float apple;
 float boat;
-float grape, pear;
+float grape, pear, peach;
 float tempscore;
 int displayscore;
 
@@ -29,24 +29,32 @@ void PhysicsPlayground::Combination1(int posX, float& PosY)
 {
 	float apple1;
 	float apple2;
+	int peachnum;
+	peachnum = (rand() % 3);
 	if (posX == 1)
 	{
 		apple = 0.f;
 		boat = 33.f;
+		if (peachnum == 2)
+			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, -33, PosY);
 	}
 	else if (posX == 2)
 	{
 		apple = 33.f;
 		boat = -33.f;
+		if (peachnum == 2)
+			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 0, PosY);
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
 		boat = 0.f;
+		if (peachnum == 2)
+			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 33, PosY);
 	}
 	apple2 = boat;
 	apple1 = apple;
-	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	Scene::TrainTrigger(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100., vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
@@ -64,7 +72,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 		if (pearnum == 1)
 			Scene::HurdleTrigger(m_physicsWorld, "Jump.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 		else
-			Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+			Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	}
 	else if (posX == 2)
 	{
@@ -74,7 +82,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 		if (pearnum == 1)
 			Scene::HurdleTrigger(m_physicsWorld, "Jump.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 		else
-			Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+			Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	}
 	else if (posX == 3)
 	{
@@ -84,7 +92,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 		if (pearnum == 1)
 			Scene::HurdleTrigger(m_physicsWorld, "Jump.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 		else
-			Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+			Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	}
 	apple2 = boat;
 	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
@@ -101,26 +109,25 @@ void PhysicsPlayground::Combination3(int posX, float& PosY)
 	{
 		apple = 0.f;
 		if(grapenum == 1)
-			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, 33, PosY);
+			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 33, PosY);
 	}
 	else if (posX == 2)
 	{
 		apple = 33.f;
 		if (grapenum == 1 )
-			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, 0, PosY);
+			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 0, PosY);
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
 		if (grapenum == 1)
-			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, -33, PosY);
+			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, -33, PosY);
 	}
 	apple1 = apple;
-	Scene::TrainEntity(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, apple1, PosY);
+	Scene::TrainTrigger(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 57.f;
-	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	Scene::TrainTrigger(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 150.f;
-	cout << grapenum;
 
 }
 
@@ -212,7 +219,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	float anthony = 50.f;
 	{
 
-		Scene::HurdleTrigger(m_physicsWorld, "Jump.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0, 0);
 	}
 	//Starter Train
 	{
@@ -304,9 +310,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
-float startimer, jumpTime;
+float startimer, jumpTime, bootTimer;
 void PhysicsPlayground::Update()
 {
+
+	heightVar2 = heightVar;
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	Scene::AdjustScrollOffset();
 	player.Update();
@@ -319,17 +327,35 @@ void PhysicsPlayground::Update()
 		multiplier = 1;
 		startimer = 0;
 	}
+	cout << heightVar;
+	if (boots == true)
+	{
+		bootTimer += 0.01;
+	}
+	if (bootTimer >= 5)
+	{
+		boots = false;
+		bootTimer = 0;
+	}
 
-	if (height > 0)
+	if (heightVar > 0)
 	{
 		jumpTime += 0.01;
 	}
-	if (jumpTime >= 3)
+	if (jumpTime >= 1)
 	{
-		height = 0;
+		heightVar = 0;
 		jumpTime = 0;
 	}
-
+	if (heightVar2 > 0)
+	{
+		jumpTime += 0.01;
+	}
+	if (jumpTime >= 1)
+	{
+		heightVar2 = 0;
+		jumpTime = 0;
+	}
 	tempscore += 0.01 * multiplier;
 	tempscore += coinpickvar * multiplier;
 	coinpickvar = 0;
@@ -372,7 +398,10 @@ void PhysicsPlayground::KeyboardDown()
 
 	if (Input::GetKeyDown(Key::Space))
 	{
-		height = 1;
+		if( boots==false)
+			heightVar = 1;
+		else if(boots == true)
+			heightVar = 2;
 	}
 
 	if (Input::GetKey(Key::A))

@@ -1,8 +1,8 @@
-#include "Starthing.h"
+#include "Hurdle.h"
 #include "ECS.h"
 
 #include "PhysicsPlayground.h"
-int height;
+int heightVar2;
 
 void HurdleThing::OnTrigger()
 {
@@ -10,7 +10,7 @@ void HurdleThing::OnTrigger()
 
 	if (!triggered)
 	{
-		if (height == 0)
+		if (heightVar2 == 0)
 		{
 			for (int i = 0; i < m_targetEntities.size(); i++)
 			{
@@ -28,7 +28,7 @@ void HurdleThing::OnEnter()
 	if (!triggered)
 	{
 		
-		if (height == 0)
+		if (heightVar2 == 0)
 		{
 			std::cout << "dead";
 			for (int i = 0; i < m_targetEntities.size(); i++)

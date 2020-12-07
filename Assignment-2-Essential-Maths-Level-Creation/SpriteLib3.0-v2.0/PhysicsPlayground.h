@@ -3,7 +3,8 @@
 #include "PhysicsPlaygroundListener.h"
 #ifndef __PhysicsPlayground_h__
 #define __PhysicsPlayground_h__
-extern int coinpickvar, multiplier, height;
+extern int coinpickvar, multiplier, heightVar, heightVar2;
+extern bool boots;
 #endif
 class PhysicsPlayground : public Scene
 {

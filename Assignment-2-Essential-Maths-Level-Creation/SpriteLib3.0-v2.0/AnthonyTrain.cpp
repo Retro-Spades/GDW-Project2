@@ -1,5 +1,7 @@
 #include "AnthonyTrain.h"
 #include "ECS.h"
+#include "PhysicsPlayground.h"
+	int heightVar;
 
 void AnthonyTrain::OnTrigger()
 {
@@ -7,14 +9,16 @@ void AnthonyTrain::OnTrigger()
 
 	if (!triggered)
 	{
-		for (int i = 0; i < m_targetEntities.size(); i++)
+		if (heightVar < 2)
 		{
-			PhysicsBody::m_bodiesToDelete.push_back(m_targetEntities[i]);
-		}
+			for (int i = 0; i < m_targetEntities.size(); i++)
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(m_targetEntities[i]);
+			}
 
-		triggered = true;
-		//helo
-		std::cout << "You hit a wall";
+			triggered = true;
+			std::cout << "You hit a wall";
+		}
 	}
 }
 
@@ -24,14 +28,17 @@ void AnthonyTrain::OnEnter()
 
 	if (!triggered)
 	{
-		for (int i = 0; i < m_targetEntities.size(); i++)
+		if (heightVar < 2)
 		{
-			PhysicsBody::m_bodiesToDelete.push_back(m_targetEntities[i]);
+			for (int i = 0; i < m_targetEntities.size(); i++)
+			{
+				PhysicsBody::m_bodiesToDelete.push_back(m_targetEntities[i]);
+			}
+
+			triggered = true;
+
+			std::cout << "~~~~~You hit a wall";
 		}
-
-		triggered = true;
-
-		std::cout << "~~~~~You hit a wall";
 	}
 }
 

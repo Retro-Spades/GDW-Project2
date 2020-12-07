@@ -16,6 +16,7 @@
 #include "AnthonyTrain.h"
 #include "StarThing.h"
 #include "Hurdle.h"
+#include "JumpBootThing.h"
 
 
 class ECS abstract
