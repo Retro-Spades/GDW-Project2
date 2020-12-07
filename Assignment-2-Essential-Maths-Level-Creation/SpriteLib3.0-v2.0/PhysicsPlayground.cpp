@@ -8,6 +8,8 @@
 float posX;
 float posY = 50.f;
 float apple;
+float score;
+int displayscore;
 
 using namespace std;
 PhysicsPlayground::PhysicsPlayground(std::string name)
@@ -236,6 +238,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 void PhysicsPlayground::Update()
 {
 	//std::cout << randomNum();
+	score += 0.01;
+	displayscore = score;
 }
 
 
