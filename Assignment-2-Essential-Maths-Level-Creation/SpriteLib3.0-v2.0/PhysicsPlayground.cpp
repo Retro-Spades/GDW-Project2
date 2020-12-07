@@ -245,16 +245,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 			i++;
 			std::cout << tempVar << endl;
 			Combination3(tempVar,posY);
-			
-
-			//for (int i = 0; i < 3; i++)
-			//{
-				//cout << *(p + i) << endl;
-			//}
 
 
 			std::cout << endl << "Next group" << endl << endl;
-			//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
 		}
 	}
 	//Right Player Boarder
@@ -265,35 +258,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	{
 		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -60.f, 2.f), 10.f, 10.f, -43.f, -60.f, 0.f);
 	}
-	////Setup static Top Platform
-	//{
-	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train2.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, 150.f);
-	//}
-
-	////Setup static Top Platform
-	//{
-	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train3.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -37.f, -10.f);
-	//}
-
-	////Setup static Top Platform
-	//{
-	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, 250.f);
-	//}
-
-	////Setup static Top Platform
-	//{
-	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 0.f, 250.f);
-	//}
-
-	//{
-	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, -37.f, 350.f);
-	//}
-
-	//{
-	//	Scene::CreateMoveableEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, -20.f, 2.f), 0.f, 0.f, 37.f, 350.f);
-	//}
-
-
 	//Setup static LEFT WALL
 	{
 		Scene::CreateStaticEntity(m_physicsWorld, "LeftWall.png", 15, 200, vec3(0.f, -20.f, 0.f), 0.f, 0.f, -60.f, -10.f, 0.f);
