@@ -6,6 +6,9 @@
 #include <thread>
 #include <windows.h>
 #include <cstdlib>
+#include "Game.h"
+#include<windows.h>
+#include <iostream>
 #include "PhysicsPlayground.h"
 	int heightVar, displayscore;
 using namespace std;
@@ -97,6 +100,7 @@ void AnthonyTrain::OnEnter()
 						case 0:
 						{
 							//play game
+
 							system("cls");
 
 							Sleep(1000);

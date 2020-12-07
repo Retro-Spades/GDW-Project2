@@ -540,7 +540,7 @@ void Scene::HurdleTrigger(b2World* m_physicsWorld, std::string fileName, int wid
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY-20), vec2(0.f, -25.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
 
 		tempPhsBody.SetGravityScale(0.2f);
@@ -582,7 +582,7 @@ void Scene::TrainTrigger(b2World* m_physicsWorld, std::string fileName, int widt
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody = PhysicsBody(entity, tempBody, float(30.f - shrinkX), float(60.f - shrinkY), vec2(0.f, -10.f), true, TRIGGER, PLAYER);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
 		tempPhsBody.SetGravityScale(0.2f);
 	}

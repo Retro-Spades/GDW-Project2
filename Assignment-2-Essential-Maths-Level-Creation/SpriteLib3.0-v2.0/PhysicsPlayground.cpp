@@ -54,7 +54,7 @@ void PhysicsPlayground::Combination1(int posX, float& PosY)
 	apple2 = boat;
 	apple1 = apple;
 	Scene::TrainTrigger(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
-	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100., vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
+	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100., vec3(0.f, 20.f, 1.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
 void PhysicsPlayground::Combination2(int posX, float& PosY)
@@ -94,7 +94,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 			Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	}
 	apple2 = boat;
-	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
+	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
 void PhysicsPlayground::Combination3(int posX, float& PosY)
