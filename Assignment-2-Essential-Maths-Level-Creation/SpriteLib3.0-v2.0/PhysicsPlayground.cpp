@@ -8,6 +8,8 @@
 float posX;
 float posY = 50.f;
 float apple;
+float score;
+int displayscore;
 
 using namespace std;
 PhysicsPlayground::PhysicsPlayground(std::string name)
@@ -117,8 +119,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<PhysicsBody>(entity);
 
 		std::string fileName = "SurferCharacter.png";
-		std::string animation = "SurferSpriteAnim.json";
-		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animation, 20, 20, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
+		std::string animations = "SurferSpriteAnim.json";
+		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 20, 20, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
 			&ECS::GetComponent<Transform>(entity));
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
 
@@ -238,6 +240,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 void PhysicsPlayground::Update()
 {
 	//std::cout << randomNum();
+	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
+	Scene::AdjustScrollOffset();
+	player.Update();
+	score += 0.01;
+	displayscore = score;
 }
 
 
@@ -280,6 +287,11 @@ void PhysicsPlayground::KeyboardDown()
 	if (Input::GetKeyDown(Key::T))
 	{
 		PhysicsBody::SetDraw(!PhysicsBody::GetDraw());
+	}
+
+	if (Input::GetKeyDown(Key::Space))
+	{
+		 
 	}
 	
 }
