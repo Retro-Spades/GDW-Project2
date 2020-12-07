@@ -34,14 +34,13 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 	//Loads in the animations json file
 	nlohmann::json animations = File::LoadJSON(animationJSON);
 
-	//IDLE ANIMATIONS\\
 	
 	//Idle 
 	m_animController->AddAnimation(animations["SurferSpriteAnim"].get<Animation>());
 
-	//AttackLeft
+	//Jump
 	m_animController->AddAnimation(animations["JumpSpriteAnim"].get<Animation>());
-	//AttackRight
+
 
 
 	//Set Default Animation
@@ -52,10 +51,9 @@ void Player::InitPlayer(std::string& fileName, std::string& animationJSON, int w
 
 void Player::Update()
 {
-	if (!m_locked)
-	{
-		MovementUpdate();
-	}
+
+	MovementUpdate();
+
 
 	AnimationUpdate();
 }
@@ -78,13 +76,18 @@ void Player::MovementUpdate()
 		{
 			vel = vel + vec3(-1.f, 0.f, 0.f);
 			
-			m_moving = true;
+			
 		}
 		if (Input::GetKey(Key::D))
 		{
 			vel = vel + vec3(1.f, 0.f, 0.f);
 			
-			m_moving = true;
+		
+		}
+
+		if (Input::GetKeyDown(Key::Space))
+		{
+			m_jumping = true;
 		}
 
 		m_physBody->SetVelocity(vel * speed);
@@ -98,27 +101,22 @@ void Player::MovementUpdate()
 		{
 			m_transform->SetPositionX(m_transform->GetPositionX() - (speed * Timer::deltaTime));
 			
-			m_moving = true;
+			
 		}
 		if (Input::GetKey(Key::D))
 		{
 			m_transform->SetPositionX(m_transform->GetPositionX() + (speed * Timer::deltaTime));
 			
-			m_moving = true;
+			
 		}
-	}
 
-	if (Input::GetKeyDown(Key::Space))
-	{
-		
-
-		if (m_hasPhysics)
+		if (Input::GetKeyDown(Key::Space))
 		{
-			m_physBody->SetVelocity(vec3());
+			m_jumping = true;
 		}
 
-		m_jumping = true;
 	}
+
 }
 
 void Player::AnimationUpdate()

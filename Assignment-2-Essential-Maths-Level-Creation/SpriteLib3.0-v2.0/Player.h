@@ -8,27 +8,19 @@
 enum AnimEnums
 {
 
-
-};
-
-enum AnimTypes
-{
-#ifdef TOPDOWN
-	IDLE = 0,
-	WALK = 4,
-	ATTACK = 8
-#endif
-
 	IDLE = 0,
 	JUMP = 1,
 
 };
 
-enum AnimDir
+enum AnimTypes
 {
 
 
+
+
 };
+
 
 class Player
 {
