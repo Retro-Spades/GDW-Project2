@@ -71,7 +71,6 @@ void Player::MovementUpdate()
 		auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
 
 		b2Vec2 position = player.GetPosition();
-		cout << position.x << endl;
 		if (position.x >= -1 && position.x <= 1)
 		{
 			player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
