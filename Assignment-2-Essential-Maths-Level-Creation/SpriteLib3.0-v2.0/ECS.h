@@ -14,6 +14,7 @@
 #include "HorizontalScroll.h"
 #include "CanJump.h"
 #include "AnthonyTrain.h"
+#include "StarThing.h"
 
 
 class ECS abstract

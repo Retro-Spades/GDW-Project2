@@ -1,9 +1,12 @@
-#include "DestroyTrigger.h"
+#include "Starthing.h"
 #include "ECS.h"
+#include <iostream>
+#include <chrono>
+#include <thread>
 #include "PhysicsPlayground.h"
- int coinpickvar;
+ int multiplier;
 
-void DestroyTrigger::OnTrigger()
+void StarThing::OnTrigger()
 {
 	Trigger::OnTrigger();
 
@@ -17,7 +20,7 @@ void DestroyTrigger::OnTrigger()
 	}
 }
 
-void DestroyTrigger::OnEnter()
+void StarThing::OnEnter()
 {
 	Trigger::OnEnter();
 
@@ -27,13 +30,12 @@ void DestroyTrigger::OnEnter()
 		{
 			PhysicsBody::m_bodiesToDelete.push_back(m_targetEntities[i]);
 		}
-
-		triggered = true;
-		coinpickvar += 5;
+		multiplier = 2;
+		
 	}
 }
 
-void DestroyTrigger::OnExit()
+void StarThing::OnExit()
 {
 	Trigger::OnExit();
 }

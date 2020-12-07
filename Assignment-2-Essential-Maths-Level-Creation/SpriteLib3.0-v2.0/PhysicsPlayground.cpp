@@ -9,8 +9,10 @@ float posX;
 float posY = 100.f;
 float apple;
 float boat;
+float grape;
 float tempscore;
 int displayscore;
+int grapenum;
 
 using namespace std;
 PhysicsPlayground::PhysicsPlayground(std::string name)
@@ -70,6 +72,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 	}
 	apple2 = boat;
 	apple1 = apple;
+
 	Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
@@ -90,7 +93,7 @@ void PhysicsPlayground::Combination3(int posX, float& PosY)
 		apple = -33.f;
 	}
 	apple1 = apple;
-	Scene::TrainEntity(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	Scene::TrainEntity(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 57.f;
 	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 150.f;
@@ -122,6 +125,7 @@ void PhysicsPlayground::TestingTrain(int posX, float& PosY)
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
 	int tempVar;
+	multiplier = 1;
 
 	//Dynamically allocates the register
 	m_sceneReg = new entt::registry;
@@ -183,7 +187,6 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 	float anthony = 50.f;
 	{
-		Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15.f, 15.f, 100.f, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0, 0);
 	}
 	//Starter Train
 	{
@@ -275,20 +278,29 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
-
+float startimer;
 void PhysicsPlayground::Update()
 {
+
+	grapenum = (rand() % 3);
 	//std::cout << randomNum();
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	Scene::AdjustScrollOffset();
 	player.Update();
-	tempscore += 0.01;
-	tempscore += coinpickvar;
+	if (multiplier > 1)
+	{
+		startimer += 0.01;
+	}
+	if (startimer >= 3)
+	{
+		multiplier = 1;
+		startimer = 0;
+	}
+	tempscore += 0.01 * multiplier;
+	tempscore += coinpickvar * multiplier;
 	coinpickvar = 0;
 	displayscore = tempscore;
-
-
-	
+	cout << multiplier;
 }
 
 

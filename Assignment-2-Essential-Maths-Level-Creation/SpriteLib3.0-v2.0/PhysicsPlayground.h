@@ -1,11 +1,9 @@
 #pragma once
-
 #include "Scene.h"
 #include "PhysicsPlaygroundListener.h"
-
 #ifndef __PhysicsPlayground_h__
 #define __PhysicsPlayground_h__
-extern int coinpickvar;
+extern int coinpickvar, multiplier;
 #endif
 class PhysicsPlayground : public Scene
 {

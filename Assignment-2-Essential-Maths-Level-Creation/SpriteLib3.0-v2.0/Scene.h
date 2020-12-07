@@ -25,6 +25,7 @@ public:
 	virtual void Update();
 	int randomNum();
 	int * randomNumX();
+	int* randomNumZ();
 	void AdjustScrollOffset();
 	void CreateCameraEntity(bool mainCamera, float windowWidth, float windowHeight, float left, float right, float bottom, float top, float zNear, float zFar, float aspectRatio, bool vertScroll = false, bool horizScroll = false);
 	void CreateEntity(std::string fileName, int width, int height, float transparency, vec3 position);
@@ -60,6 +61,7 @@ public:
 	void CreateTrigger(b2World* m_physicsWorld, std::string fileName, int target, float shrinkX, float shrinkY, vec3 position);
 
 	void CreateTrigger(b2World* m_physicsWorld, std::string fileName, int target, float shrinkX, float shrinkY, vec3 position, float tempDefPositionX, float tempDefPositionY);
+	void StarTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY);
 	void CoinTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY);
 	void TrainTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY,  float tempDefPositionX, float tempDefPositionY);
 
