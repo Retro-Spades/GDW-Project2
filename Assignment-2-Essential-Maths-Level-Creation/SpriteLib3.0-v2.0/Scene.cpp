@@ -372,19 +372,23 @@ void Scene::CreateTrigger(b2World* m_physicsWorld, std::string fileName,int targ
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
 }
 
-void Scene::TrainTrigger(b2World* m_physicsWorld, float shrinkX, float shrinkY, vec3 position, float tempDefPositionX, float tempDefPositionY)
+void Scene::TrainTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY)
 {
 	//Setup trigger
 	{
 		//Creates entity
 		auto entity = ECS::CreateEntity();
 		puzzleWall9 = entity;
+
 		//Add components
+		ECS::AttachComponent<Sprite>(entity);
 		ECS::AttachComponent<Transform>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 		ECS::AttachComponent<Trigger*>(entity);
 
 		//Sets up components
+		ECS::GetComponent<Sprite>(entity).LoadSprite(fileName, width, height);
+		ECS::GetComponent<Sprite>(entity).SetTransparency(transparency);
 		ECS::GetComponent<Transform>(entity).SetPosition(position);
 		ECS::GetComponent<Trigger*>(entity) = new AnthonyTrain();
 

@@ -58,7 +58,8 @@ public:
 	void CreateTrigger(b2World* m_physicsWorld, std::string fileName, int target, float shrinkX, float shrinkY, vec3 position);
 
 	void CreateTrigger(b2World* m_physicsWorld, std::string fileName, int target, float shrinkX, float shrinkY, vec3 position, float tempDefPositionX, float tempDefPositionY);
-	void TrainTrigger(b2World* m_physicsWorld, float shrinkX, float shrinkY, vec3 position, float tempDefPositionX, float tempDefPositionY);
+
+	void TrainTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY,  float tempDefPositionX, float tempDefPositionY);
 
 	//Get the scene registry
 	entt::registry* GetScene() const;

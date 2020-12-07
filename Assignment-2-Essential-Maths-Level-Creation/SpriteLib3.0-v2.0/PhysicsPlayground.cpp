@@ -101,7 +101,7 @@ void PhysicsPlayground::TestingTrain(int posX, float& PosY)
 	}
 	apple1 = apple;
 
-	Scene::TrainTrigger(m_physicsWorld, 0.f, 0.f, vec3(30.f, -20.f, 80.f), apple1, PosY);
+	Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30.f, 80.f, 100.f, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 
 }
 
