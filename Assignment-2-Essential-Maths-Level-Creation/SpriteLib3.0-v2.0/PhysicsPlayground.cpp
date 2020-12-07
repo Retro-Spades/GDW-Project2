@@ -144,7 +144,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		std::string animations = "FixedSurfer.json";
 		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 20, 50, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
 			&ECS::GetComponent<Transform>(entity));
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 3.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
@@ -156,7 +156,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 
 		tempBody = m_physicsWorld->CreateBody(&tempDef);
 
-		tempPhsBody = PhysicsBody(entity, tempBody, float((tempSpr.GetHeight() - 10.f) / 2.f), vec2(0.f, 0.f), false, PLAYER, PLATFORM | GROUND | ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
+		tempPhsBody = PhysicsBody(entity, tempBody, 10, 10, vec2(0.f, -20.f), false, PLAYER, PLATFORM | GROUND | ENEMY | OBJECTS | PICKUP | TRIGGER, 0.5f, 3.f);
 
 		tempPhsBody.SetRotationAngleDeg(0.f);
 		tempPhsBody.SetFixedRotation(true);
@@ -165,7 +165,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 	//Player's platform
 	{
-		Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -20.f, 2.f),  110.f, 10.f,  0.f, -50.f, 0.f);
+		Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -70.f, 2.f),  110.f, 10.f,  0.f, -70.f, 0.f);
 	}
 	float anthony = 50.f;
 	
@@ -208,11 +208,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	}
 	//Right Player Boarder
 	{
-		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -20.f, 2.f), 10.f, 10.f, 44.f, -40.f, 0.f);
+		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -60.f, 2.f), 10.f, 10.f, 44.f, -60.f, 0.f);
 	}
 	//Left Player Boarder
 	{
-		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -20.f, 2.f), 10.f, 10.f, -43.f, -40.f, 0.f);
+		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -60.f, 2.f), 10.f, 10.f, -43.f, -60.f, 0.f);
 	}
 	////Setup static Top Platform
 	//{
@@ -260,6 +260,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
 
+
+
 void PhysicsPlayground::Update()
 {
 	//std::cout << randomNum();
@@ -268,6 +270,9 @@ void PhysicsPlayground::Update()
 	player.Update();
 	score += 0.01;
 	displayscore = score;
+
+
+
 }
 
 
@@ -283,14 +288,6 @@ void PhysicsPlayground::KeyboardHold()
 		speed *= 5.f;
 	}
 
-	if (Input::GetKey(Key::A))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
-	}
-	if (Input::GetKey(Key::D))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(1400000.f, 0.f), true);
-	}
 
 	//Change physics body size for circle
 	if (Input::GetKey(Key::O))
@@ -315,6 +312,16 @@ void PhysicsPlayground::KeyboardDown()
 	if (Input::GetKeyDown(Key::Space))
 	{
 		 
+	}
+
+	if (Input::GetKey(Key::A))
+	{
+		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
+		
+	}
+	if (Input::GetKey(Key::D))
+	{
+		player.GetBody()->ApplyForceToCenter(b2Vec2(1400000.f, 0.f), true);
 	}
 	
 }
