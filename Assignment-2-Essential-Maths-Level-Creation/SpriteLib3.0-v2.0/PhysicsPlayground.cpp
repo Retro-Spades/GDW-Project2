@@ -118,9 +118,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		ECS::AttachComponent<AnimationController>(entity);
 		ECS::AttachComponent<PhysicsBody>(entity);
 
-		std::string fileName = "SurferCharacter.png";
-		std::string animations = "SurferSpriteAnim.json";
-		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 20, 20, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
+		std::string fileName = "SurferCharacter4.png";
+		std::string animations = "FixedSurfer.json";
+		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 20, 50, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
 			&ECS::GetComponent<Transform>(entity));
 		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
 
