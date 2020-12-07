@@ -110,7 +110,7 @@ int main()
                         system("cls");
                         std::cout << "You Selected Controls\n";
                         Sleep(1000);
-                        cout << "How to play: " << endl << "Click -A- to move left" << endl << "Click -Space Bar- to Jump" << endl << "Click -S- to charge through walls" << endl << "To Play the game click 1\nTo Exit press 2" << endl;
+                        cout << "How to play: " << endl << "Click -A- to move left" << endl << "Click -D- to move right" << endl << "Click -Space Bar- to Jump" << endl << "To Play the game click 1\nTo Exit press 2" << endl;
                         int Gobax;
                         cin >> Gobax;
                         if (Gobax == 1)

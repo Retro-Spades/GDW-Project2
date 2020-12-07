@@ -273,7 +273,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
-float startimer, jumpTime, bootTimer;
+float startimer, jumpTime, bootTimer, jumpTime2;
 void PhysicsPlayground::Update()
 {
 
@@ -312,12 +312,12 @@ void PhysicsPlayground::Update()
 
 	if (heightVar2 > 0)
 	{
-		jumpTime += 0.01;
+		jumpTime2 += 0.01;
 	}
-	if (jumpTime >= 1)
+	if (jumpTime2 >= 1)
 	{
 		heightVar2 = 0;
-		jumpTime = 0;
+		jumpTime2 = 0;
 	}
 	tempscore += 0.01 * multiplier;
 	tempscore += coinpickvar * multiplier;
