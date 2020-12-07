@@ -8,7 +8,8 @@
 float posX;
 float posY = 100.f;
 float apple;
-float score;
+float boat;
+float tempscore;
 int displayscore;
 
 using namespace std;
@@ -26,39 +27,51 @@ PhysicsPlayground::PhysicsPlayground(std::string name)
 void PhysicsPlayground::Combination1(int posX, float& PosY)
 {
 	float apple1;
+	float apple2;
 	if (posX == 1)
 	{
 		apple = 0.f;
+		boat = 33.f;
 	}
 	else if (posX == 2)
 	{
 		apple = 33.f;
+		boat = -33.f;
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
+		boat = 0.f;
 	}
+	apple2 = boat;
 	apple1 = apple;
 	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100., vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
 void PhysicsPlayground::Combination2(int posX, float& PosY)
 {
 	float apple1;
+	float apple2;
 	if (posX == 1)
 	{
 		apple = 0.f;
+		boat = -33.f;
 	}
 	else if (posX == 2)
 	{
 		apple = 33.f;
+		boat = 0.f;
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
+		boat = 33.f;
 	}
+	apple2 = boat;
 	apple1 = apple;
 	Scene::TrainEntity(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
+	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
 void PhysicsPlayground::Combination3(int posX, float& PosY)
@@ -81,6 +94,7 @@ void PhysicsPlayground::Combination3(int posX, float& PosY)
 	PosY = PosY + 57.f;
 	Scene::TrainEntity(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 150.f;
+
 }
 
 void PhysicsPlayground::TestingTrain(int posX, float& PosY)
@@ -168,7 +182,9 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -70.f, 2.f),  110.f, 10.f,  0.f, -70.f, 0.f);
 	}
 	float anthony = 50.f;
-	
+	{
+		Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15.f, 15.f, 100.f, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0, 0);
+	}
 	//Starter Train
 	{
 		int* p;
@@ -176,35 +192,35 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		p = randomNumX();
 		num = randomNum();
 		TestingTrain(2, posY);
-		//Combination1(1, posY);
-		//for (int i = 0; i < 100; i=i)
-		//{
+		Combination1(1, posY);
+		for (int i = 0; i < 100; i=i)
+		{
 
-		//	tempVar = *(p + i);
-		//	i++;
-		//	std::cout << tempVar << endl;
-		//	Combination1(tempVar,posY);
+			tempVar = *(p + i);
+			i++;
+			std::cout << tempVar << endl;
+			Combination1(tempVar,posY);
 
-		//	tempVar = *(p + i);
-		//	i++;
-		//	std::cout << tempVar << endl;
-		//	Combination2(tempVar,posY);
+			tempVar = *(p + i);
+			i++;
+			std::cout << tempVar << endl;
+			Combination2(tempVar,posY);
 
-		//	tempVar = *(p + i);
-		//	i++;
-		//	std::cout << tempVar << endl;
-		//	Combination3(tempVar,posY);
-		//	
+			tempVar = *(p + i);
+			i++;
+			std::cout << tempVar << endl;
+			Combination3(tempVar,posY);
+			
 
-		//	/*for (int i = 0; i < 3; i++)
-		//	{
-		//		cout << *(p + i) << endl;
-		//	}*/
+			//for (int i = 0; i < 3; i++)
+			//{
+				//cout << *(p + i) << endl;
+			//}
 
 
-		//	std::cout << endl << "Next group" << endl << endl;
-		//	//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
-		//}
+			std::cout << endl << "Next group" << endl << endl;
+			//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
+		}
 	}
 	//Right Player Boarder
 	{
@@ -260,19 +276,19 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
 
-
-
 void PhysicsPlayground::Update()
 {
 	//std::cout << randomNum();
 	auto& player = ECS::GetComponent<Player>(MainEntities::MainPlayer());
 	Scene::AdjustScrollOffset();
 	player.Update();
-	score += 0.01;
-	displayscore = score;
+	tempscore += 0.01;
+	tempscore += coinpickvar;
+	coinpickvar = 0;
+	displayscore = tempscore;
 
 
-
+	
 }
 
 

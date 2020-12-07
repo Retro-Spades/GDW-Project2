@@ -36,6 +36,8 @@ public:
 	void TrainEntity(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY);
 	void PlayerPlatform(b2World* m_physicsWorld, int width, int height, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY, float rotation);
 	int puzzleWall9;
+	int coin;
+	int star;
 	//Gamepad Input
 	//Because these are virtual you can override them in your inherited classes.
 	//The same way you do for Update().
@@ -58,7 +60,7 @@ public:
 	void CreateTrigger(b2World* m_physicsWorld, std::string fileName, int target, float shrinkX, float shrinkY, vec3 position);
 
 	void CreateTrigger(b2World* m_physicsWorld, std::string fileName, int target, float shrinkX, float shrinkY, vec3 position, float tempDefPositionX, float tempDefPositionY);
-
+	void CoinTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY);
 	void TrainTrigger(b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY,  float tempDefPositionX, float tempDefPositionY);
 
 	//Get the scene registry

@@ -1,6 +1,7 @@
 #include "DestroyTrigger.h"
 #include "ECS.h"
-
+#include "PhysicsPlayground.h"
+ int coinpickvar;
 void DestroyTrigger::OnTrigger()
 {
 	Trigger::OnTrigger();
@@ -11,7 +12,6 @@ void DestroyTrigger::OnTrigger()
 		{
 			PhysicsBody::m_bodiesToDelete.push_back(m_targetEntities[i]);
 		}
-
 		triggered = true;
 	}
 }
@@ -28,6 +28,7 @@ void DestroyTrigger::OnEnter()
 		}
 
 		triggered = true;
+		coinpickvar += 5;
 	}
 }
 

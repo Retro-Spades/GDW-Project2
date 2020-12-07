@@ -3,6 +3,10 @@
 #include "Scene.h"
 #include "PhysicsPlaygroundListener.h"
 
+#ifndef __PhysicsPlayground_h__
+#define __PhysicsPlayground_h__
+extern int coinpickvar;
+#endif
 class PhysicsPlayground : public Scene
 {
 public:
@@ -11,7 +15,6 @@ public:
 	void InitScene(float windowWidth, float windowHeight) override;
 
 	void Update() override;
-
 
 	void monkey();
 	void Combination1(int, float&);
