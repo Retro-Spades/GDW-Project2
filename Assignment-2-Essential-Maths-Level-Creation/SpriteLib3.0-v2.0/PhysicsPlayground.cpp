@@ -122,7 +122,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		std::string animations = "FixedSurfer.json";
 		ECS::GetComponent<Player>(entity).InitPlayer(fileName, animations, 20, 50, &ECS::GetComponent<Sprite>(entity), &ECS::GetComponent<AnimationController>(entity),
 			&ECS::GetComponent<Transform>(entity));
-		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 1.f));
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 3.f));
 
 		auto& tempSpr = ECS::GetComponent<Sprite>(entity);
 		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
