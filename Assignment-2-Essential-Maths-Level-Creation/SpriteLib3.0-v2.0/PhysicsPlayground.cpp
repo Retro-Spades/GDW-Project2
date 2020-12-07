@@ -6,7 +6,7 @@
 #include <random>
 #include <ctime>
 float posX;
-float posY = 50.f;
+float posY = 100.f;
 float apple;
 float score;
 int displayscore;
@@ -83,6 +83,28 @@ void PhysicsPlayground::Combination3(int posX, float& PosY)
 	PosY = PosY + 150.f;
 }
 
+void PhysicsPlayground::TestingTrain(int posX, float& PosY)
+{
+
+	float apple1;
+	if (posX == 1)
+	{
+		apple = 0.f;
+	}
+	else if (posX == 2)
+	{
+		apple = 33.f;
+	}
+	else if (posX == 3)
+	{
+		apple = -33.f;
+	}
+	apple1 = apple;
+
+	Scene::TrainTrigger(m_physicsWorld, 0.f, 0.f, vec3(30.f, -20.f, 80.f), apple1, PosY);
+
+}
+
 void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 {
 	int tempVar;
@@ -153,35 +175,36 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		int num;
 		p = randomNumX();
 		num = randomNum();
+		TestingTrain(2, posY);
+		//Combination1(1, posY);
+		//for (int i = 0; i < 100; i=i)
+		//{
 
-		for (int i = 0; i < 100; i=i)
-		{
+		//	tempVar = *(p + i);
+		//	i++;
+		//	std::cout << tempVar << endl;
+		//	Combination1(tempVar,posY);
 
-			tempVar = *(p + i);
-			i++;
-			std::cout << tempVar << endl;
-			Combination1(tempVar,posY);
+		//	tempVar = *(p + i);
+		//	i++;
+		//	std::cout << tempVar << endl;
+		//	Combination2(tempVar,posY);
 
-			tempVar = *(p + i);
-			i++;
-			std::cout << tempVar << endl;
-			Combination2(tempVar,posY);
+		//	tempVar = *(p + i);
+		//	i++;
+		//	std::cout << tempVar << endl;
+		//	Combination3(tempVar,posY);
+		//	
 
-			tempVar = *(p + i);
-			i++;
-			std::cout << tempVar << endl;
-			Combination3(tempVar,posY);
-			
-
-			/*for (int i = 0; i < 3; i++)
-			{
-				cout << *(p + i) << endl;
-			}*/
+		//	/*for (int i = 0; i < 3; i++)
+		//	{
+		//		cout << *(p + i) << endl;
+		//	}*/
 
 
-			std::cout << endl << "Next group" << endl << endl;
-			//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
-		}
+		//	std::cout << endl << "Next group" << endl << endl;
+		//	//Scene::TrainEntity(m_physicsWorld, "Train.png", 35, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0.f, anthony);
+		//}
 	}
 	//Right Player Boarder
 	{

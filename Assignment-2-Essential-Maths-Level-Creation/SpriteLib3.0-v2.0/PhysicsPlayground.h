@@ -18,6 +18,8 @@ public:
 	void Combination2(int, float&);
 	void Combination3(int, float&);
 
+	void TestingTrain(int, float&);
+
 	//Input overrides
 	void KeyboardHold() override;
 	void KeyboardDown() override;

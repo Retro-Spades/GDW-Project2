@@ -288,8 +288,7 @@ void Scene::CreateMoveableEntity(b2World* m_physicsWorld, std::string fileName, 
 	tempPhsBody.SetGravityScale(0.2f);
 }
 
-void Scene::TrainEntity (b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX,
-	float shrinkY, float tempDefPositionX, float tempDefPositionY) {
+void Scene::TrainEntity (b2World* m_physicsWorld, std::string fileName, int width, int height, float transparency, vec3 position, float shrinkX, float shrinkY, float tempDefPositionX, float tempDefPositionY) {
 	auto entity = ECS::CreateEntity();
 	//Add components
 	ECS::AttachComponent<Sprite>(entity);
@@ -371,9 +370,43 @@ void Scene::CreateTrigger(b2World* m_physicsWorld, std::string fileName,int targ
 
 		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER | OBJECTS);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
-	
+}
+
+void Scene::TrainTrigger(b2World* m_physicsWorld, float shrinkX, float shrinkY, vec3 position, float tempDefPositionX, float tempDefPositionY)
+{
+	//Setup trigger
+	{
+		//Creates entity
+		auto entity = ECS::CreateEntity();
+		puzzleWall9 = entity;
+		//Add components
+		ECS::AttachComponent<Transform>(entity);
+		ECS::AttachComponent<PhysicsBody>(entity);
+		ECS::AttachComponent<Trigger*>(entity);
+
+		//Sets up components
+		ECS::GetComponent<Transform>(entity).SetPosition(position);
+		ECS::GetComponent<Trigger*>(entity) = new AnthonyTrain();
+
+		ECS::GetComponent<Trigger*>(entity)->SetTriggerEntity(entity);
+		ECS::GetComponent<Trigger*>(entity)->AddTargetEntity(puzzleWall9);
 
 
+		auto& tempPhsBody = ECS::GetComponent<PhysicsBody>(entity);
+
+		b2Body* tempBody;
+		b2BodyDef tempDef;
+		tempDef.type = b2_dynamicBody;
+		tempDef.position.Set(tempDefPositionX, tempDefPositionY);
+
+		tempBody = m_physicsWorld->CreateBody(&tempDef);
+
+		tempPhsBody = PhysicsBody(entity, tempBody, float(40.f - shrinkX), float(40.f - shrinkY), vec2(0.f, 0.f), true, TRIGGER, PLAYER);
+		tempPhsBody.SetColor(vec4(1.f, 0.f, 0.f, 0.3f));
+	}
+
+	ECS::GetComponent<HorizontalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
+	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::MainPlayer()));
 }
 
 entt::registry* Scene::GetScene() const
