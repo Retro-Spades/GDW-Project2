@@ -235,6 +235,8 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 	ECS::GetComponent<VerticalScroll>(MainEntities::MainCamera()).SetFocus(&ECS::GetComponent<Transform>(MainEntities::GetFocus()));
 }
 
+
+
 void PhysicsPlayground::Update()
 {
 	//std::cout << randomNum();
@@ -243,6 +245,9 @@ void PhysicsPlayground::Update()
 	player.Update();
 	score += 0.01;
 	displayscore = score;
+
+
+
 }
 
 
@@ -258,14 +263,6 @@ void PhysicsPlayground::KeyboardHold()
 		speed *= 5.f;
 	}
 
-	if (Input::GetKey(Key::A))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
-	}
-	if (Input::GetKey(Key::D))
-	{
-		player.GetBody()->ApplyForceToCenter(b2Vec2(1400000.f, 0.f), true);
-	}
 
 	//Change physics body size for circle
 	if (Input::GetKey(Key::O))
@@ -290,6 +287,16 @@ void PhysicsPlayground::KeyboardDown()
 	if (Input::GetKeyDown(Key::Space))
 	{
 		 
+	}
+
+	if (Input::GetKey(Key::A))
+	{
+		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
+		
+	}
+	if (Input::GetKey(Key::D))
+	{
+		player.GetBody()->ApplyForceToCenter(b2Vec2(1400000.f, 0.f), true);
 	}
 	
 }

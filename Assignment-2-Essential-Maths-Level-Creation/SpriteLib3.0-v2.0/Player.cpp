@@ -1,4 +1,5 @@
 #include "Player.h"
+using namespace std;
 
 Player::Player()
 {
@@ -62,45 +63,26 @@ void Player::MovementUpdate()
 {
 	m_moving = false;
 
-	if (m_hasPhysics)
-	{
-		float speed = 10.f;
-		vec3 vel = vec3(0.f, 0.f, 0.f);
+	
+	
 
-		if (Input::GetKey(Key::Shift))
-		{
-			speed *= 7.f;
-		}
-
-		if (Input::GetKey(Key::A))
-		{
-			vel = vel + vec3(-1.f, 0.f, 0.f);
-			
-			
-		}
-		if (Input::GetKey(Key::D))
-		{
-			vel = vel + vec3(1.f, 0.f, 0.f);
-			
-		
-		}
-
-		if (Input::GetKeyDown(Key::Space))
-		{
-			m_jumping = true;
-		}
-
-		m_physBody->SetVelocity(vel * speed);
-	}
-	else
-	{
 		//Regular Movement
 		float speed = 15.f;
+		auto& player = ECS::GetComponent<PhysicsBody>(MainEntities::MainPlayer());
+
+		b2Vec2 position = player.GetPosition();
+		cout << position.x << endl;
+		if (position.x >= -1 && position.x <= 1)
+		{
+			player.GetBody()->SetLinearVelocity(b2Vec2(0.f, 0.f));
+		}
 
 		if (Input::GetKey(Key::A))
 		{
 			m_transform->SetPositionX(m_transform->GetPositionX() - (speed * Timer::deltaTime));
 			
+
+
 			
 		}
 		if (Input::GetKey(Key::D))
@@ -115,7 +97,6 @@ void Player::MovementUpdate()
 			m_jumping = true;
 		}
 
-	}
 
 }
 
