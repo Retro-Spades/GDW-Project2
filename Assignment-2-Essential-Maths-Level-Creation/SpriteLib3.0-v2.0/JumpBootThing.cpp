@@ -20,6 +20,7 @@ void JumpBootThing::OnTrigger()
 	}
 }
 
+
 void JumpBootThing::OnEnter()
 {
 	Trigger::OnEnter();

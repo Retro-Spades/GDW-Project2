@@ -73,7 +73,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 		else
 			Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	}
-	else if (posX == 2)
+	else if (posX == 2)//test
 	{
 		apple = 33.f;
 		boat = 0.f;
