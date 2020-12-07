@@ -309,6 +309,7 @@ void PhysicsPlayground::Update()
 		heightVar = 0;
 		jumpTime = 0;
 	}
+
 	if (heightVar2 > 0)
 	{
 		jumpTime += 0.01;

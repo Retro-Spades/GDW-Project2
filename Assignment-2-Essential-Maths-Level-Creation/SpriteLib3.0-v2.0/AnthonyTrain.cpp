@@ -47,10 +47,26 @@ void AnthonyTrain::OnEnter()
 			}
 
 			triggered = true;
-
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 			system("cls");
-			string Menu[3] = { "Play Again" , "Exit", ""};
+			string Menu[3] = {
+
+
+
+
+
+						  " ___________      .__  __   \n"
+	" \\_   _____/__  __|__|/  |_\n"
+	  "  |    __)_\\  \\/  /  \\   __\\\n"
+	  "  |        \\>    <|  ||  |     \n"
+	  " /_______  /__/\\_ \\__||__|\n"
+	 "         \\/      \\/ \n"
+				,
+				""
+
+
+
+				, "" };
 			int pointer = 0;
 			bool bMainMenu = true;
 			while (bMainMenu)
@@ -99,17 +115,6 @@ void AnthonyTrain::OnEnter()
 						{
 						case 0:
 						{
-							//play game
-
-							system("cls");
-
-							Sleep(1000);
-							cout << "Playing" << endl;
-
-
-						}
-						case 1:
-						{
 							//thank you for playing
 							system("cls");
 							std::cout << " you selected Exit\n Good Bye!";
@@ -117,11 +122,13 @@ void AnthonyTrain::OnEnter()
 							bMainMenu = false;
 							exit(0);
 						}
+
 						default:
 						{
 							cout << "Invalid Input! ";
 						}
 						}
+
 					}
 				}
 			}
