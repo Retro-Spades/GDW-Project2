@@ -35,26 +35,26 @@ void PhysicsPlayground::Combination1(int posX, float& PosY)
 		apple = 0.f;
 		boat = 33.f;
 		if (peachnum == 2)
-			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, -33, PosY);
+			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, -33, PosY);
 	}
 	else if (posX == 2)
 	{
 		apple = 33.f;
 		boat = -33.f;
 		if (peachnum == 2)
-			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 0, PosY);
+			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0, PosY);
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
 		boat = 0.f;
 		if (peachnum == 2)
-			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 33, PosY);
+			Scene::JumpBootTrigger(m_physicsWorld, "JumpBoots.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 33, PosY);
 	}
 	apple2 = boat;
 	apple1 = apple;
 	Scene::TrainTrigger(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
-	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100., vec3(0.f, 20.f, 1.f), 0, 0, apple2, PosY);
+	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100., vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
 void PhysicsPlayground::Combination2(int posX, float& PosY)
@@ -94,7 +94,7 @@ void PhysicsPlayground::Combination2(int posX, float& PosY)
 			Scene::TrainTrigger(m_physicsWorld, "Train2.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	}
 	apple2 = boat;
-	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0, 0, apple2, PosY);
+	Scene::CoinTrigger(m_physicsWorld, "shmeckel.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0, 0, apple2, PosY);
 	PosY = PosY + 130.f;
 }
 void PhysicsPlayground::Combination3(int posX, float& PosY)
@@ -108,22 +108,22 @@ void PhysicsPlayground::Combination3(int posX, float& PosY)
 	{
 		apple = 0.f;
 		if(grapenum == 1)
-			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 33, PosY);
+			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 33, PosY);
 	}
 	else if (posX == 2)
 	{
 		apple = 33.f;
 		if (grapenum == 1 )
-			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, 0, PosY);
+			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, 0, PosY);
 	}
 	else if (posX == 3)
 	{
 		apple = -33.f;
 		if (grapenum == 1)
-			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 1.f), 0.f, 0.f, -33, PosY);
+			Scene::StarTrigger(m_physicsWorld, "2xStar.png", 15, 15, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, -33, PosY);
 	}
 	apple1 = apple;
-	Scene::TrainTrigger(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 3.f), 0.f, 0.f, apple1, PosY);
+	Scene::TrainTrigger(m_physicsWorld, "Train3.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 57.f;
 	Scene::TrainTrigger(m_physicsWorld, "Train.png", 30, 80, 100, vec3(0.f, 20.f, 2.f), 0.f, 0.f, apple1, PosY);
 	PosY = PosY + 150.f;
@@ -209,11 +209,11 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		tempPhsBody.SetRotationAngleDeg(0.f);
 		tempPhsBody.SetFixedRotation(true);
 		tempPhsBody.SetColor(vec4(1.f, 0.f, 1.f, 0.3f));
-		tempPhsBody.SetGravityScale(1.f);
+		tempPhsBody.SetGravityScale(0.f);
 	}
 	//Player's platform
 	{
-		Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -70.f, 2.f),  110.f, 10.f,  0.f, -70.f, 0.f);
+		//Scene::PlayerPlatform(m_physicsWorld, 150, 10, vec3(30.f, -70.f, 2.f),  110.f, 10.f,  0.f, -70.f, 0.f);
 	}
 	float anthony = 50.f;
 	{
@@ -225,8 +225,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 		int num;
 		p = randomNumX();
 		num = randomNum();
-		TestingTrain(2, posY);
-		Combination1(1, posY);
+		
 		for (int i = 0; i < 100; i=i)
 		{
 
@@ -249,7 +248,7 @@ void PhysicsPlayground::InitScene(float windowWidth, float windowHeight)
 			//std::cout << endl << "Next group" << endl << endl;
 		}
 	}
-	//Right Player Boarder
+	//Right Player Border
 	{
 		Scene::PlayerPlatform(m_physicsWorld, 15, 15, vec3(30.f, -60.f, 2.f), 10.f, 10.f, 44.f, -60.f, 0.f);
 	}
@@ -370,7 +369,7 @@ void PhysicsPlayground::KeyboardDown()
 	if (Input::GetKey(Key::A))
 	{
 		player.GetBody()->ApplyForceToCenter(b2Vec2(-1400000.f, 0.f), true);
-		
+	
 	}
 	if (Input::GetKey(Key::D))
 	{
